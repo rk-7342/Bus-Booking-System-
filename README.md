@@ -1,234 +1,46 @@
-# 🚌 Bus Ticket Booking System  
-A full-stack bus ticket booking application built with **Node.js**, **Express**, **PostgreSQL**, and **React (TypeScript)**.  
-Users can browse bus shows, select journey details, pick seats, add passenger information, make bookings, and proceed to payment.
+# Getting Started with Create React App
 
----
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 🚀 Features
+## Available Scripts
 
-### 👤 User Features
-- User Registration & Login (JWT Authentication)
-- Select journey date, pickup, and destination
-- View list of available bus shows
-- View available & booked seats in real-time
-- Select multiple seats
-- Enter passenger details (name, age, gender, mobile)
-- Booking confirmation summary
-- Payment initiation (dummy for now)
+In the project directory, you can run:
 
-### 🛠 Admin Features
-- Create bus shows
-- Manage routes (source ↔ destination)
-- View all bookings
-- Manage seat availability
+### `npm start`
 
-### 🗄 Backend Features
-- Express REST API
-- PostgreSQL database integration
-- Secure Authentication (JWT)
-- Proper database schema with constraints
-- Error handling & validation
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### 🎨 Frontend Features
-- React with TypeScript
-- Fully component-based architecture
-- Seat selection UI
-- Protected routes (auth required)
-- Axios-based API service layer
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
----
+### `npm test`
 
-## 🧰 Tech Stack
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### **Frontend**
-- React (TypeScript)
-- React Router
-- Axios
-- CSS Modules / Styled Components
+### `npm run build`
 
-### **Backend**
-- Node.js
-- Express.js
-- PostgreSQL + pg library
-- JWT Authentication
-- Bcrypt password hashing
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### **Dev Tools**
-- Nodemon
-- Concurrently
-- VS Code
-- pgAdmin4
-- GitHub
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
----
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## 📂 Folder Structure
+### `npm run eject`
 
-```
-bus-ticket-system/
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── middlewares/
-│   │   ├── routes/
-│   │   ├── utils/
-│   │   └── index.js
-│   ├── package.json
-│   └── .env
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── context/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.tsx
-│   │   └── index.tsx
-│   ├── package.json
-│
-└── README.md
-```
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
----
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## 🛢 Database Schema
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### **routes**
-| Column | Type | Description |
-|--------|------|-------------|
-| id | SERIAL PK | Route ID |
-| source | VARCHAR | Starting location |
-| destination | VARCHAR | Ending location |
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### **shows**
-| Column | Type |
-|--------|------|
-| id | SERIAL PK |
-| route_id | INT FK |
-| bus_name | VARCHAR |
-| start_time | TIMESTAMP |
-| total_seats | INT |
+## Learn More
 
-### **bookings**
-| Column | Type |
-|--------|------|
-| id | SERIAL PK |
-| user_id | INT FK |
-| show_id | INT FK |
-| seat_numbers | INTEGER[] |
-| passengers | JSONB |
-| status | VARCHAR |
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
----
-
-## 🔑 Environment Variables
-
-Create a file: `backend/.env`
-
-```
-PORT=3001
-DATABASE_URL=postgres://username:password@localhost:5432/busdb
-JWT_SECRET=your_jwt_secret
-```
-
----
-
-## ▶️ Running the Backend
-
-```
-cd backend
-npm install
-npm run dev
-```
-
-API will run at:  
-**http://localhost:3001**
-
----
-
-## ▶️ Running the Frontend
-
-```
-cd frontend
-npm install
-npm start
-```
-
-App will run at:  
-**http://localhost:3000**
-
----
-
-## 📡 API Endpoints Summary
-
-### **Auth**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/auth/register | Register new user |
-| POST | /api/auth/login | Login & get JWT |
-
-### **Shows**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/shows | Create show (Admin) |
-| GET | /api/shows | Get all shows |
-| GET | /api/shows/:id/seats | Get booked seats for a show |
-
-### **Bookings**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | /api/bookings | Create booking |
-| GET | /api/bookings/:id | Get booking details |
-
----
-
-## 🌐 Deployment Guide
-
-### **Backend (Render / Railway / Heroku)**
-1. Push repo to GitHub  
-2. Connect backend folder  
-3. Add environment variables  
-4. Deploy  
-
-### **Frontend (Vercel / Netlify)**
-1. Build the frontend  
-
-```
-npm run build
-```
-
-2. Deploy `/build` folder  
-
-3. Update backend URL:
-
-`frontend/src/services/api.ts`
-
-```ts
-baseURL: "https://your-backend-url/api"
-```
-
----
-
-## 🎯 Future Enhancements
-- Razorpay / Stripe Payment Integration  
-- Admin Dashboard (React UI)  
-- Real-time seat lock using WebSockets  
-- Ticket PDF generation  
-- Email/SMS notifications  
-
----
-
-## 🧑‍💻 Author
-**Kota Sesha Sai Sanjeeva Rishi Vardhan**  
-AI Engineering | Backend & Full Stack Developer
-
----
-
-## ⭐ Contribute
-Pull requests are welcome!  
-If you like this project, give it a ⭐ on GitHub.
-
+To learn React, check out the [React documentation](https://reactjs.org/).
